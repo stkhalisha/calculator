@@ -5,53 +5,53 @@ let currentNumber = "0";
 
 // membuat agar layar dapat menampilkan angka menggunakan method querySelector
 const calculatorScreen = document.querySelector(".calculator-screen");
-const updateScreen = (number) => {
+function updateScreen(number) {
   calculatorScreen.value = number;
-};
+}
 
 // mengambil element menggunakan querySelectorAll
 const numbers = document.querySelectorAll(".number");
-numbers.forEach((number) => {
-  number.addEventListener("click", (event) => {
+numbers.forEach(function (number) {
+  number.addEventListener("click", function (event) {
     inputNumber(event.target.value);
     updateScreen(currentNumber);
   });
 });
 
 // definisikan function “inputNumber”
-const inputNumber = (number) => {
+function inputNumber(number) {
   if (currentNumber === "0") {
     currentNumber = number;
   } else {
     currentNumber += number;
   }
-};
+}
 
 const operators = document.querySelectorAll(".operator");
-operators.forEach((operator) => {
-  operator.addEventListener("click", (event) => {
+operators.forEach(function (operator) {
+  operator.addEventListener("click", function (event) {
     inputOperator(event.target.value);
   });
 });
 
 // definisikan function “inputOperator”
-const inputOperator = (operator) => {
+function inputOperator(operator) {
   if (calculationOperator === "") {
     prevNumber = currentNumber;
   }
   calculationOperator = operator;
   currentNumber = "0";
-};
+}
 
 // mengambil element menggunakan querySelector
 const equalSign = document.querySelector(".equal-sign");
-equalSign.addEventListener("click", () => {
+equalSign.addEventListener("click", function () {
   calculate(); // Jalankan Function calculate saat = diclick
   updateScreen(currentNumber);
 });
 
 // definisikan function “calculate”
-const calculate = () => {
+function calculate() {
   let result = "";
   switch (calculationOperator) {
     case "+":
@@ -71,29 +71,29 @@ const calculate = () => {
   }
   currentNumber = result;
   calculationOperator = "";
-};
+}
 
 // Definisikan function “clearAll”
-const clearAll = () => {
+function clearAll() {
   prevNumber = "";
   calculationOperator = "";
   currentNumber = "0";
-};
+}
 
 // mengambil element menggunakan querySelector
 const clearBtn = document.querySelector(".all-clear");
-clearBtn.addEventListener("click", () => {
+clearBtn.addEventListener("click", function () {
   clearAll(); // Jalankan Function clearAll saat tombol AC diclick
   updateScreen(currentNumber);
 });
 
 const decimal = document.querySelector(".decimal");
-decimal.addEventListener("click", (event) => {
+decimal.addEventListener("click", function (event) {
   inputDecimal(event.target.value);
   updateScreen(currentNumber);
 });
 
-inputDecimal = (dot) => {
+inputDecimal = function (dot) {
   if (currentNumber.includes(".")) {
     return;
   }
@@ -101,12 +101,12 @@ inputDecimal = (dot) => {
 };
 
 const percentage = document.querySelector(".percentage");
-percentage.addEventListener("click", (event) => {
+percentage.addEventListener("click", function (event) {
   inputPercentage(event.target.value);
   updateScreen(currentNumber);
 });
 
-inputPercentage = (percentage) => {
+inputPercentage = function (percentage) {
   if (currentNumber.includes("%")) {
     return;
   }
